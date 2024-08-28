@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ericsson.nms.security</groupId>
+		<artifactId>file-connector</artifactId>
+		<version>1.0.35-SNAPSHOT</version>
+	</parent>
+	<artifactId>file-connector-ra</artifactId>
+	<packaging>rar</packaging>
+	<name>file-connector-ra</name>
+
+	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>**/META-INF/*</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-rar-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<id>test</id>
+						<goals>
+							<goal>rar</goal>
+						</goals>
+						<configuration>
+							<raXmlFile>src/main/resources/META-INF/ra.xml</raXmlFile>
+							<includeJar>false</includeJar>
+							<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>com.ericsson.nms.security</groupId>
+			<artifactId>file-connector-ra-jca</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+</project>

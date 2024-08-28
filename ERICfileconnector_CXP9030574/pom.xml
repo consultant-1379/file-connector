@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>file-connector</artifactId>
+		<groupId>com.ericsson.nms.security</groupId>
+		<version>1.0.35-SNAPSHOT</version>
+	</parent>
+	<artifactId>ERICfileconnector_CXP9030574</artifactId>
+	<name>[${project.parent.artifactId}] RPM module</name>
+	<packaging>${rpm.packaging}</packaging>
+	<properties>
+		<com.ericsson.oss.rpm.architecture>noarch</com.ericsson.oss.rpm.architecture>
+		<!-- Install path = /${rpm-root}/${comp-name}/${install-path} -->
+		<rpm-root>opt</rpm-root>
+		<comp-name>ericsson</comp-name>
+		<install-path>${project.groupId}</install-path>
+        <publish_artifact>true</publish_artifact>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>${project.parent.artifactId}-ra</artifactId>
+			<version>${project.version}</version>
+			<type>rar</type>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>${version.jboss-as-maven-plugin}</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
